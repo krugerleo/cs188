@@ -152,7 +152,7 @@ def aStarSearch(problem: SearchProblem, heuristic=nullHeuristic):
     filaComPrioridade.push((inicio, [], 0), 0)
     
     while not filaComPrioridade.isEmpty():
-        nodo,caminho,valorAtual = item = filaComPrioridade.pop()
+        nodo,caminho,valorAtual = filaComPrioridade.pop()
         if problem.isGoalState(nodo[0]):
             return caminho
         if nodo[0] not in visitados:
