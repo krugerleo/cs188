@@ -148,18 +148,18 @@ def aStarSearch(problem: SearchProblem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     visitados = set()
     filaComPrioridade = util.PriorityQueue()
-    inicio = (problem.getStartState(), "Inicio", 1)
+    inicio = problem.getStartState()
     filaComPrioridade.push((inicio, [], 0), 0)
     
     while not filaComPrioridade.isEmpty():
         nodo,caminho,valorAtual = filaComPrioridade.pop()
-        if problem.isGoalState(nodo[0]):
+        if problem.isGoalState(nodo):
             return caminho
-        if nodo[0] not in visitados:
-            visitados.add(nodo[0])
-            for node in problem.getSuccessors(nodo[0]):
+        if nodo not in visitados:
+            visitados.add(nodo)
+            for node in problem.getSuccessors(nodo):
                 coord,movimento,valorProximo = node
-                filaComPrioridade.push((node, caminho + [movimento], valorAtual + valorProximo), (valorAtual + valorProximo + heuristic(coord, problem) ))
+                filaComPrioridade.push((coord, caminho + [movimento], valorAtual + valorProximo), (valorAtual + valorProximo + heuristic(coord, problem) ))
 
 
 
